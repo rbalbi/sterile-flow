@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+:root {
+  --sterile-background: #f7fbed;
+  --sterile-surface: #ffffff;
+  --sterile-surface-muted: #f1f5e7;
+  --sterile-summary-bg: #f0f4e6;
+  --sterile-primary: #00626a;
+  --sterile-primary-gradient-end: #2c7b83;
+  --sterile-text-primary: #181d15;
+  --sterile-text-secondary: #64748b;
+  --sterile-text-tertiary: #94a3b8;
+  --sterile-hazard-amber: #b5ac84;
+  --sterile-hazard-text: #665f3d;
+  --sterile-hazard-bg: rgba(181, 172, 132, 0.2);
+  --sterile-divider: #e0e4d6;
+  --sterile-active-nav: #e0e4d6;
+  --sterile-avatar-bg: #ecf0e2;
+  --sterile-reassurance-bg: rgba(230, 234, 220, 0.5);
+}
+
+@theme inline {
+  --color-sterile-background: var(--sterile-background);
+  --color-sterile-surface: var(--sterile-surface);
+  --color-sterile-surface-muted: var(--sterile-surface-muted);
+  --color-sterile-summary: var(--sterile-summary-bg);
+  --color-sterile-primary: var(--sterile-primary);
+  --color-sterile-primary-end: var(--sterile-primary-gradient-end);
+  --color-sterile-text: var(--sterile-text-primary);
+  --color-sterile-text-secondary: var(--sterile-text-secondary);
+  --color-sterile-text-tertiary: var(--sterile-text-tertiary);
+  --color-sterile-hazard: var(--sterile-hazard-amber);
+  --color-sterile-hazard-text: var(--sterile-hazard-text);
+  --color-sterile-hazard-bg: var(--sterile-hazard-bg);
+  --color-sterile-divider: var(--sterile-divider);
+  --color-sterile-active-nav: var(--sterile-active-nav);
+  --color-sterile-avatar-bg: var(--sterile-avatar-bg);
+  --color-sterile-reassurance: var(--sterile-reassurance-bg);
+  --font-heading: var(--font-manrope);
+  --font-body: var(--font-public-sans);
+}
+
+body {
+  background: var(--sterile-background);
+  color: var(--sterile-text-primary);
+  font-family: var(--font-public-sans), system-ui, sans-serif;
+}
