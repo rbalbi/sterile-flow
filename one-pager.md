@@ -1,4 +1,4 @@
-# Uber Clean for Hospitals — Executive One-Pager
+# SterileFlow — Executive One-Pager
 
 ## The product
 A B2B web app that delivers on-demand, medical-grade cleaning and sterilization for surgical instruments, scrubs, and hospital garments. Uber's dispatch model, applied to hospital reprocessing: request a pickup, track chain-of-custody, receive items back cleaned to regulatory standards — all from a single dashboard.

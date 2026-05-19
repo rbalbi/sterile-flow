@@ -1,4 +1,4 @@
-# Uber Clean — UI Scaffold
+# SterileFlow — UI Scaffold
 
 Minimal Next.js + TypeScript UI scaffold for the MVP (scheduling pickups, tracking, upcoming surgeries).
 
