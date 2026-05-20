@@ -3,6 +3,19 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { CURRENT_USER } from "@/lib/mock-users";
+import { NotificationBell } from "@/components/layout/NotificationBell";
+
+const PLACEHOLDER: Record<string, string> = {
+  "/archive": "Search archive records...",
+  "/inventory": "Search batches, IDs, or units...",
+};
+
+function getPlaceholder(pathname: string): string {
+  for (const [prefix, label] of Object.entries(PLACEHOLDER)) {
+    if (pathname.startsWith(prefix)) return label;
+  }
+  return "Search requests...";
+}
 
 export function TopAppBar() {
   const pathname = usePathname();
@@ -12,7 +25,6 @@ export function TopAppBar() {
   const [query, setQuery] = useState(params?.get("q") ?? "");
 
   const isArchive = pathname.startsWith("/archive");
-  const placeholder = isArchive ? "Search archive records..." : "Search requests...";
 
   useEffect(() => {
     setQuery(params?.get("q") ?? "");
@@ -38,7 +50,6 @@ export function TopAppBar() {
     router.replace(`${pathname}?${next.toString()}`);
   };
 
-  // debounce commit
   useEffect(() => {
     if (!isArchive) return;
     const id = setTimeout(() => commit(query), 250);
@@ -52,7 +63,16 @@ export function TopAppBar() {
         className="flex items-center gap-4 rounded-xl px-4 py-2 w-[384px]"
         style={{ background: "var(--sterile-active-nav)" }}
       >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-sterile-text-secondary flex-shrink-0">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          className="text-sterile-text-secondary flex-shrink-0"
+          aria-hidden
+        >
           <circle cx="11" cy="11" r="8" />
           <path d="m21 21-4.35-4.35" />
         </svg>
@@ -61,8 +81,9 @@ export function TopAppBar() {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder={placeholder}
+          placeholder={getPlaceholder(pathname)}
           className="flex-1 bg-transparent outline-none text-sm text-sterile-text placeholder:text-sterile-text-tertiary"
+          aria-label="Search"
         />
         <kbd className="hidden md:inline-flex items-center justify-center h-5 px-1.5 rounded bg-white text-[10px] font-bold text-sterile-text-tertiary border border-sterile-divider">
           ⌘K
@@ -70,24 +91,21 @@ export function TopAppBar() {
       </div>
 
       <div className="flex items-center gap-6">
-        <button
-          type="button"
-          aria-label="Notifications"
-          className="relative text-sterile-text-secondary hover:text-sterile-primary"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
-            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
-          </svg>
-          <span className="absolute -right-0.5 top-0 w-2 h-2 rounded-full bg-[#ba1a1a]" aria-hidden />
-        </button>
+        <NotificationBell />
 
         <button
           type="button"
           aria-label="Help"
-          className="text-sterile-text-secondary hover:text-sterile-primary"
+          className="text-sterile-text-secondary hover:text-sterile-primary transition-colors"
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
             <circle cx="12" cy="12" r="10" />
             <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
             <line x1="12" y1="17" x2="12.01" y2="17" />
